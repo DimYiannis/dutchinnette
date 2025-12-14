@@ -1,83 +1,142 @@
-# Codam Checker - Module00
+# 🌱 Dutchinnette
 
-This is a local Python checker for **module00 exercises** at Codam/42.  
-It mimics the functionality of Francinette, allowing you to run automated tests for your exercises offline.
+**Dutchinnette** is an automated testing tool for Codam's Python curriculum, inspired by [Francinette](https://github.com/xicodomingues/francinette) for 42.
 
-## Folder Structure
+## 🚀 Installation
 
-```
-/codam_checker/
-│
-├── codam.py                # CLI script (main checker)
-├── modules/
-│   └── module00_tests.py   # Test cases for module00 exercises
-└── README.md               # This file
-```
-
-Your exercise folders (`ex0`, `ex1`, `ex2`, etc.) should be at the **same level** as `codam.py`.
-
----
-
-## Usage
-
-### Run the checker for module00 (default)
+### From source (recommended for development)
 
 ```bash
-python3 codam.py
+git clone https://github.com/yourusername/dutchinnette.git
+cd dutchinnette
+pip install -e .
 ```
 
-### Run the checker with a custom alias (optional)
-
-Add an alias in your shell (`~/.zshrc` or `~/.bashrc`):
+### Using pip (once published)
 
 ```bash
-echo 'alias codam="python3 /path/to/codam_checker/codam.py"' >> ~/.zshrc
-source ~/.zshrc
+pip install dutchinnette
 ```
 
-Now you can run:
+## 📖 Usage
+
+Navigate to your module directory and run:
 
 ```bash
 codam
 ```
 
-### Run the checker for multiple modules
+The tool will automatically detect which module you're working on and run the appropriate tests.
+
+### Manual module selection
 
 ```bash
-codam module00 module01
+codam module00
+codam module01
 ```
 
-> Only module00 is included for now. You can add more modules later in the `modules/` folder.
+## 📁 Project Structure
+
+```
+dutchinnette/
+├── dutchinnette/
+│   ├── __init__.py
+│   ├── codam.py          # Main testing logic
+│   └── modules.py        # Test definitions
+├── setup.py
+├── README.md
+└── requirements.txt
+```
+
+## 🎯 Supported Modules
+
+- ✅ **Module00** - Basic Python fundamentals
+  - ex0: ft_hello_garden
+  - ex1: ft_plot_area
+  - ex2: ft_harvest_total
+  - ex3: ft_plant_age
+  - ex4: ft_water_reminder
+  - ex5: ft_simple_calculator
+  - ex6: ft_grade_checker
+  - ex7: ft_count_to_ten
+
+- ✅ **Module01** - Object-Oriented Programming (OOP)
+  - ex0: ft_garden_intro (Program structure, `if __name__ == "__main__"`)
+  - ex1: ft_garden_data (Classes and `__init__`)
+  - ex2: ft_plant_growth (Instance methods)
+  - ex3: ft_plant_factory (Multiple instances)
+  - ex4: ft_garden_security (Encapsulation, getters/setters)
+  - ex5: ft_plant_types (Inheritance with `super()`)
+  - ex6: ft_garden_analytics (Advanced OOP: nested classes, static/class methods)
+
+## 🧪 Example Output
+
+```
+🌱 Dutchinnette - Codam Python Tester 🌱
+
+============================================================
+Testing MODULE01
+============================================================
+
+  ✓ ex0      ex0/ft_garden_intro.py              OK
+  ✓ ex1      ex1/ft_garden_data.py               OK
+  ✗ ex2      ex2/ft_plant_growth.py              KO (6/8 checks passed)
+      Missing: 'Growth this week: +6cm'
+  ✓ ex3      ex3/ft_plant_factory.py             OK
+  ⊘ ex5      ex5/ft_plant_types.py               SKIPPED (file not found)
+
+------------------------------------------------------------
+Result: 35/43 tests passed (81.4%)
+Status: SOME TESTS FAILED ✖
+============================================================
+```
+
+### Understanding Output
+- ✓ **Green checkmark**: All checks passed
+- ✗ **Red X**: Some/all checks failed (shows which strings are missing)
+- ⊘ **Yellow circle**: File not found (skipped)
+
+For detailed testing guide, see [MODULE01_TESTING_GUIDE.md](MODULE01_TESTING_GUIDE.md).
+
+## 🛠️ Adding New Tests
+
+To add tests for a new exercise, edit `dutchinnette/modules.py`:
+
+```python
+MODULE00 = {
+    "ex8": {
+        "file": "ex8/ft_my_function.py",
+        "func": "ft_my_function",  # or None for script execution
+        "cases": [
+            (["input1", "input2"], "expected output"),
+        ],
+    },
+}
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by [Francinette](https://github.com/xicodomingues/francinette) by xicodomingues
+- Built for the Codam Coding College community
+
+## 📧 Contact
+
+If you have any questions or suggestions, feel free to open an issue!
 
 ---
 
-## How it works
-
-1. The script imports your exercise functions dynamically.  
-2. Simulates inputs for each function.  
-3. Captures printed output.  
-4. Compares the output to expected results.  
-5. Prints **PASS / FAIL** for each exercise.
-
----
-
-## Extending for new modules
-
-1. Create a new test file in `modules/` named `moduleXX_tests.py`.  
-2. Define a `TESTS` dictionary in the same format as `module00_tests.py`.  
-3. Run `codam moduleXX` to test the new module.
-
----
-
-## Requirements
-
-- Python 3.10+
-- Exercise folders (`ex0`, `ex1`, etc.) with functions as specified in Codam’s instructions.
-
----
-
-## Notes
-
-- The checker is **fully offline**.  
-- Designed to be modular and scalable for future modules.  
-- Only prints **PASS/FAIL** messages, no changes to your code.
+Made with ❤️ for the Codam community
